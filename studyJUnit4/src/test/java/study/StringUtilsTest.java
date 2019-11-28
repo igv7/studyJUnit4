@@ -2,6 +2,10 @@ package study;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class StringUtilsTest {
@@ -86,8 +90,70 @@ public class StringUtilsTest {
 	//***************************************************************************************************************************
 	
 	@Test
-	public void testBubblXeSort() {
+	public void testBubbleSort() {
 		int[] arr = {4, 12, -17, 3};
+		int[] expected = {-17, 3, 4, 12};
+		study.Test.bubbleSort(arr);
+		assertArrayEquals(expected, arr);
+	}
+	
+	//***************************************************************************************************************************
+	
+	static User user = new User("Moshe", 24);
+	
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		System.out.println("in setUpBeforeClass()");
+		user.setAge(25);
+	}
+	
+//	@Before
+//	public void setUp() {
+//		System.out.println("in setUp()");
+//		user.setAge(25);
+//	}
+	
+	@Test
+	public void test1() {
+		System.out.println("in test1()");
+		System.out.println(user.getAge());
+	}
+	
+	@Test
+	public void test2() {
+		System.out.println("in test2()");
+		System.out.println(user.getAge());
+	}
+	
+//	@After
+//	public void tearDown() {
+//		System.out.println("in tearDown()");
+//		user.setAge(24);
+//	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() {
+		System.out.println("in tearDownAfterClass()");
+		user.setAge(24);
+	}
+	
+	//***************************************************************************************************************************
+	
+	@Test
+	public void testBubbleSort_2() {
+		int[] arr = null;
+		int[] expected = {-17, 3, 4, 12};
+		try {
+			study.Test.bubbleSort(arr);
+		} catch (NullPointerException npe) {
+			System.out.println("Caught an NPE!");
+		}
+		assertArrayEquals(expected, arr);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testBubbleSort_3() {
+		int[] arr = null;
 		int[] expected = {-17, 3, 4, 12};
 		study.Test.bubbleSort(arr);
 		assertArrayEquals(expected, arr);
