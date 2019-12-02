@@ -1,6 +1,8 @@
 package study;
 
-public class Test {
+import java.lang.reflect.Modifier;
+
+public final class Test {
 	
 	public static void bubbleSort(int[] arr) {
 		int n = arr.length;
@@ -19,6 +21,15 @@ public class Test {
 		
 		int a = 9;
 		assert a == 10 : "a is not 10";
+		
+//		@SuppressWarnings("rawtypes")
+		Class<?> clazz = Test.class;
+		System.out.println(clazz.getModifiers());
+		System.out.println(Modifier.isFinal(clazz.getModifiers()));
+		System.out.println(Modifier.isPublic(clazz.getModifiers()));
+		System.out.println(Modifier.isInterface(clazz.getModifiers()));
+		System.out.println(clazz.getPackageName());
+		System.out.println(clazz.getName());
 
 	}
 
